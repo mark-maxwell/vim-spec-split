@@ -13,9 +13,10 @@ call Vundle#end()
 ```
 
 ###Custom mappings
-Add leader-key mapping to your vimrc file.
+Add leader-key mappings to your vimrc file.
 ```
 map <Leader>v :call VSpec()<CR>
+map <Leader>h :call HSpec()<CR>
 ```
 
 ##Current behaviour:
@@ -26,8 +27,9 @@ Currently, support is only available for opening the related spec for files
 within a Rails project structure.
 
 `VSpec()` - Opens the associated spec file in a vertical split pane.
+`HSpec()` - Opens the associated spec file in a horizontal split pane.
 
-This function is available in all buffers, regardless of whether you are editing
-a file within a Rails project (this may change in the future).
+These functions are available in all buffers, regardless of whether you are
+editing a file within a Rails project (this may change in the future).
 
 There will be *interesting* results when calling `VSpec()` on non-Rails files.
