@@ -12,6 +12,7 @@ call Vundle#begin()
   Plugin 'mark-maxwell/vim-spec-split'
 call Vundle#end()
 ```
+*Installation with pathogen is also an option.*
 
 ###Custom mappings
 Add leader-key mappings to your vimrc file.
