@@ -21,8 +21,10 @@ endfunction
 function! s:OpenSpecInSplit(split_command)
   if s:FileCanHaveSpec()
     execute a:split_command . ' ' . s:AssocSpec()
-  else
+  elseif s:SpecInCurrentBuffer()
     return s:SpecAlreadyOpenError()
+  else
+    return s:FileHasNoSpecError()
   endif
 endfunction
 
