@@ -34,6 +34,10 @@ within a Rails project structure.
 :call HSpec() " Opens the associated spec file in a horizontal split pane.
 ```
 
+```vim
+:call RunAssocSpec() " Run associated spec, or current spec if in current buffer
+```
+
 These functions are available in all buffers, regardless of whether you are
 editing a file within a Rails project (this may change in the future).
 

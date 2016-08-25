@@ -6,6 +6,16 @@ function! Hspec()
   call s:OpenSpecInSplit(':sp')
 endfunction
 
+function! RunAssocSpec()
+  if s:FileCanHaveSpec()
+    execute '!rspec ' . s:AssocSpec()
+  elseif s:SpecInCurrentBuffer()
+    execute '!rspec ' . s:CurrentFilePath()
+  else
+    return s:FileHasNoSpecError()
+  endif
+endfunction
+
 " local functions
 
 function! s:OpenSpecInSplit(split_command)
@@ -37,5 +47,13 @@ function! s:CurrentFilePath()
 endfunction
 
 function! s:SpecAlreadyOpenError()
-  echoerr "Current buffer contains a spec file already!"
+  echoerr 'Current buffer contains a spec file already!'
+endfunction
+
+function! s:SpecInCurrentBuffer()
+  return s:CurrentFilePath() =~ '^spec/'
+endfunction
+
+function! s:FileHasNoSpecError()
+  echoerr 'Files of this type have no associated spec!'
 endfunction
