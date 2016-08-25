@@ -22,7 +22,7 @@ function! s:OpenSpecInSplit(split_command)
   if s:FileCanHaveSpec()
     execute a:split_command . ' ' . s:AssocSpec()
   elseif s:SpecInCurrentBuffer()
-    return s:SpecAlreadyOpenError()
+    execute a:split_command . ' ' . s:AssocFile()
   else
     return s:FileHasNoSpecError()
   endif
@@ -44,12 +44,17 @@ function! s:AssocSpec()
   return s:assoc_spec_path
 endfunction
 
-function! s:CurrentFilePath()
-  return @%
+function! s:AssocFile()
+  let s:partial_match = matchstr(s:CurrentFilePath(), '\(/[a-z_]*\)\+_spec.rb')
+  let s:substituted_match = substitute(s:partial_match, '_spec.rb', '.rb', '')
+  let s:assoc_file_path = 'app' .s:substituted_match
+  "TODO need to handle spec/lib/... in the future
+
+  return s:assoc_file_path
 endfunction
 
-function! s:SpecAlreadyOpenError()
-  echoerr 'Current buffer contains a spec file already!'
+function! s:CurrentFilePath()
+  return @%
 endfunction
 
 function! s:SpecInCurrentBuffer()
