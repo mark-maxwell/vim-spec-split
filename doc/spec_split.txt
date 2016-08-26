@@ -1,0 +1,85 @@
+*spec_split.txt* Open (or run) the associated spec for the file in your current buffer.
+
+===============================================================================
+CONTENTS                                                    *SpecSplitContents*
+
+    1. Usage............ |SpecSplitUsage|
+    2. Mappings......... |SpecSplitMappings|
+    3. License.......... |SpecSplitLicense|
+    4. Contributing..... |SpecSplitContributing|
+    5. Changelog........ |SpecSplitChangelog|
+    6. Credits.......... |SpecSplitCredits|
+
+===============================================================================
+Section 1: Usage                                               *SpecSplitUsage*
+
+Allows you to quickly open the associated spec, in a split pane, for the file
+in the current buffer. Or, run the associated spec file for the file in the
+current buffer.
+
+-------------------------------------------------------------------------------
+Section 2: Mappings                                         *SpecSplitMappings*
+
+You will want to add custom mappings for the following functions:
+
+- *Vspec()*
+If the current buffer contains a file that could/should have an associated spec
+file, open this spec in a vertical split pane.
+If the current buffer contains a file that is itself a spec file, open the
+associated file, in a vertical split pane; where the associated file is the
+file that the spec covers.
+Otherwise, echo an error: 'Files of this type have no associated spec!'
+
+- *Hspec()*
+If the current buffer contains a file that could/should have an associated spec
+file, open this spec in a horizontal split pane.
+If the current buffer contains a file that is itself a spec file, open the
+associated file, in a horizontal split pane; where the associated file is the
+file that the spec covers.
+Otherwise, echo an error: 'Files of this type have no associated spec!'
+
+- *RunAssocSpec()*
+If the current buffer contains a file that could/should have an associated spec
+file, run the tests defined in that associated spec file.
+If the current buffer contains a file that is itself a spec file, run the tests
+defined in that spec file.
+Otherwise, echo an error: 'Files of this type have no associated spec!'
+
+You can do this by adding something like this to your vimrc file:
+
+  map <Leader>r :call Vspec()<CR>
+  map <Leader>d :call Hspec()<CR>
+  map <Leader>t :call RunAssocSpec()<CR>
+
+-------------------------------------------------------------------------------
+Section 3: License                                                    *License*
+
+Same terms as Vim itself (see |license|)
+
+-------------------------------------------------------------------------------
+Section 4: Contributing                                          *Contributing*
+
+Head over to: https://github.com/mark-maxwell/vim-spec-split and open up a pull
+request, or raise an issue.
+
+-------------------------------------------------------------------------------
+Section 5: Changelog
+
+This will be updated when/if the plugin grows. At the minute the plugin is too
+simple to require a changelog.
+
+-------------------------------------------------------------------------------
+Section 6: Credits                                                    *Credits*
+
+Author: Mark Maxwell
+Project source: https://github.com/mark-maxwell/vim-spec-split
+
+This is my first plugin, meant to be an introduction into learning Vim script
+and diving into the depths of Vim. Inspired by my use of Vim-rspec. That plugin
+was a must have when I first started using Vim (allowing specs to be ran from
+within Vim), but I was missing a quick way to open up the associated spec for
+the file in my current buffer. I am sure there is a plugin, or combination of
+plugins already that might do what I wanted, but the best way to learn is to
+do!
+
+Vim-rspec: https://github.com/thoughtbot/vim-rspec
