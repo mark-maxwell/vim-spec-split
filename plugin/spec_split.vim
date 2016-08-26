@@ -8,9 +8,9 @@ endfunction
 
 function! RunAssocSpec()
   if s:FileCanHaveSpec()
-    execute '!rspec ' . s:AssocSpec()
+   execute s:SpecCommand(s:AssocSpec())
   elseif s:SpecInCurrentBuffer()
-    execute '!rspec ' . s:CurrentFilePath()
+    execute s:SpecCommand(s:CurrentFilePath())
   else
     return s:FileHasNoSpecError()
   endif
@@ -63,6 +63,10 @@ endfunction
 
 function! s:SpecInCurrentBuffer()
   return s:CurrentFilePath() =~ '^spec/'
+endfunction
+
+function! s:SpecCommand(spec_file_path)
+  return '!clear && rspec ' . a:spec_file_path
 endfunction
 
 function! s:FileHasNoSpecError()
