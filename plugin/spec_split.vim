@@ -47,8 +47,12 @@ endfunction
 function! s:AssocFile()
   let s:partial_match = matchstr(s:CurrentFilePath(), '\(/[a-z_]*\)\+_spec.rb')
   let s:substituted_match = substitute(s:partial_match, '_spec.rb', '.rb', '')
-  let s:assoc_file_path = 'app' .s:substituted_match
-  "TODO need to handle spec/lib/... in the future
+
+  if s:substituted_match =~ '^/lib'
+    let s:assoc_file_path = substitute(s:substituted_match, '^/', '', '')
+  else
+    let s:assoc_file_path = 'app' .s:substituted_match
+  endif
 
   return s:assoc_file_path
 endfunction
