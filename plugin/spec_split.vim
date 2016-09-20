@@ -33,7 +33,7 @@ function! s:FileCanHaveSpec()
 endfunction
 
 function! s:AssocSpec()
-  let s:partial_match = matchstr(s:CurrentFilePath(), '\(/[a-z_]*\)\+')
+  let s:partial_match = matchstr(s:CurrentFilePath(), '\(/[a-z1-9_]*\)\+')
 
   if s:CurrentFilePath() =~ '^app/'
     let s:assoc_spec_path = 'spec' . s:partial_match . '_spec.rb'
@@ -45,7 +45,7 @@ function! s:AssocSpec()
 endfunction
 
 function! s:AssocFile()
-  let s:partial_match = matchstr(s:CurrentFilePath(), '\(/[a-z_]*\)\+_spec.rb')
+  let s:partial_match = matchstr(s:CurrentFilePath(), '\(/[a-z1-9_]*\)\+_spec.rb')
   let s:substituted_match = substitute(s:partial_match, '_spec.rb', '.rb', '')
 
   if s:substituted_match =~ '^/lib'
